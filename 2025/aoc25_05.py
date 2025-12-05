@@ -81,26 +81,21 @@ list_of_as = []
 list_of_bs = []
 
 for i, fresh_range in enumerate(fresh_ranges):
-    #old_ingredients = []
     a, b = fresh_range
     list_of_as.append(a)
     list_of_bs.append(b)
 
-a_min = min(list_of_as)
-b_max = max(list_of_bs)
-result_2 = b_max+1-a_min
-print(len(list_of_as))
 sorted_as = sorted(list_of_as)
 sorted_bs = sorted(list_of_bs)
 
+a_min = sorted_as[0]
+b_max = sorted_bs[-1]
+ 
+result_2 = b_max+1-a_min
+# correct for IDs that not in any fresh_range intervals
 for i, a in enumerate(sorted_as):
-    #if "num b in list_of_bs.sorted with b+1<a is > i:"
-    #    "result_2 -= a - max(list_of_bs.sorted[:i]"
     list_smaller_b = [b for b in list_of_bs if b+1 < a]
-    if len(list_smaller_b) >= i:
-        if i == 0: 
-            continue
-        result_2 -= (a - (max(sorted_bs[:i])+1))
-
+    if len(list_smaller_b) >= i >= 1:
+        result_2 -= (a - sorted_bs[i-1] - 1)
 
 print(f"The second result is {result_2}.")
