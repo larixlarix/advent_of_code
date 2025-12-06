@@ -23,13 +23,13 @@ sample_input = '''\
 *   +   *   +  \
 '''
 
-def process_input(input):
-    data = [line.rstrip('\n') for line in input.split('\n')]
+def process_input(input_data):
+    data = [line.rstrip('\n') for line in input_data.split('\n')]
     operator_list = list(data[-1].split())
     return data, operator_list
 
-def math_homework(input):
-    data, operator_list = process_input(input)
+def math_homework(input_data):
+    data, operator_list = process_input(input_data)
     
     column_results = list(map(lambda op: 1 if op == '*' else 0, operator_list))
 
@@ -58,8 +58,8 @@ print(f"The first result is {result_1}.")
 ###############################################################
 # Second part: read cephalopod math the right way
 
-def cephalopod_math_homework(input):
-    data, operator_list = process_input(input)
+def cephalopod_math_homework(input_data):
+    data, operator_list = process_input(input_data)
     l = len(data)
 
     exercise_positions = []
